@@ -111,5 +111,12 @@ extern "C" void USART1_IRQHandler(void) {
         if (usart1Iface != NULL) {
             usart1Iface->receiveByteFromIrq(c);
         }
+    } else {
+        /**
+         * This read on DR is required if the IRQ is asserted without RXNE pending.
+         * The interrupt may be asserted because of an overrun error (ORE), and its flag can be cleared by this read operation.
+         * @see STMicroelectronics RM0008 Reference manual, page 820
+         */
+        USART_ReceiveData(USART1);
     }
 }
