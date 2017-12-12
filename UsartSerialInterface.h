@@ -12,7 +12,7 @@
 
 class UsartSerialInterface: public AbstractSerialInterface {
 public:
-    UsartSerialInterface();
+    UsartSerialInterface(uint32_t baudRate = 115200);
     virtual ~UsartSerialInterface() {}
 
     virtual void handler();

@@ -12,7 +12,7 @@
 
 static UsartSerialInterface* usart1Iface = NULL;
 
-UsartSerialInterface::UsartSerialInterface() {
+UsartSerialInterface::UsartSerialInterface(uint32_t baudRate) {
     readIndex = writeIndex = 0;
 
     GPIO_InitTypeDef GPIOA_InitStruct;
@@ -25,7 +25,7 @@ UsartSerialInterface::UsartSerialInterface() {
     GPIO_Init(GPIOA, &GPIOA_InitStruct);
 
     USART_InitTypeDef USART1_InitStruct;
-    USART1_InitStruct.USART_BaudRate = 115200;
+    USART1_InitStruct.USART_BaudRate = baudRate;
     USART1_InitStruct.USART_WordLength = USART_WordLength_8b;
     USART1_InitStruct.USART_StopBits = USART_StopBits_1;
     USART1_InitStruct.USART_Parity = USART_Parity_No;
